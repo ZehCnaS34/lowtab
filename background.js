@@ -16,5 +16,15 @@ document.addEventListener('DOMContentLoaded', function() {
     tabQueue.push(tab);
   });
 
+  chrome.tabs.onRemove.addListener(function (tabId) {
+    // cleaning it from the tab list
+    for (let _i = 0; _i < tabQueue.length; _i++) {
+      if (tabQueue[_i] === tabId) {
+        tabQueue.splice(_i, 1);
+        break;
+      }
+    }
+  });
+
 });
 
